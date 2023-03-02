@@ -27,11 +27,11 @@ export const Cart = () => {
                         </small>
                         <div>
                             <button>+</button>
-                            <button>-</button>
+                            {/* <button>-</button> */}
                         </div>
                         <div>
                             <button><RemoveFromCartIcon /></button>
-                            <button><ClearCartIcon /></button>
+                            {/* <button><ClearCartIcon /></button> */}
                         </div>
                     </footer>
                 </ul>

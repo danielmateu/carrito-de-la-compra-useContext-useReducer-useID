@@ -24,8 +24,8 @@ export const CartProvider = ({ children }) => {
         setCart(prevState => ([...prevState, { ...product, quantity: 1 }]))
     }
 
-    const removeFromCart = (productId) => {
-        setCart(cart.filter((product) => product.id !== productId))
+    const removeFromCart = (product) => {
+        setCart(prevState => prevState.filter(item => item.id !== product.id))
     }
 
     const clearCart = () => {
