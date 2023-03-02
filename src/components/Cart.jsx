@@ -1,11 +1,50 @@
 import { useId } from "react"
-import { CartIcon, ClearCartIcon, RemoveFromCartIcon } from "./Icons"
+import { CartIcon, ClearCartIcon } from "./Icons"
 import './Cart.css'
+import { useCart } from "../hooks/useCart"
 
 
 export const Cart = () => {
 
+    
+
+    const { cart, addToCart, clearCart } = useCart()
     const cartCheckBoxId = useId()
+
+    function CartItem({thumbnail, title, price, quantity, addToCart}) {
+
+        return (
+            <li>
+                <img src={thumbnail} alt={title} />
+                <div>
+                    <strong>{title}</strong> - {price}€
+                </div>
+                <footer>
+                    <small>
+                        Qty: {quantity}
+                    </small>
+                    <div>
+                        <button
+                            onClick={() => addToCart()}
+                        >+</button>
+                        {/* <button
+                            onClick={() => removeFromCart()}
+                        >-</button> */}
+                    </div>
+                    <div>
+                        {/* <button
+                            onClick={() => removeFromCart()}
+                        ><RemoveFromCartIcon /></button> */}
+                        {/* <button
+                            onClick={() => clearCart()}
+                        ><ClearCartIcon /></button> */}
+                    </div>
+                </footer>
+            </li>
+        )
+    }
+
+
     return (
         <>
             <label htmlFor={cartCheckBoxId} className="cart-button">
@@ -15,26 +54,19 @@ export const Cart = () => {
 
             <aside className="cart">
                 <ul>
-                    <li>
-                        <img src="https://i.dummyjson.com/data/products/6/thumbnail.png" alt="Cosa" />
-                    </li>
-                    <div>
-                        <strong>MacBook</strong> - 2400€
-                    </div>
-                    <footer>
-                        <small>
-                            Qty: 1
-                        </small>
-                        <div>
-                            <button>+</button>
-                            {/* <button>-</button> */}
-                        </div>
-                        <div>
-                            <button><RemoveFromCartIcon /></button>
-                            {/* <button><ClearCartIcon /></button> */}
-                        </div>
-                    </footer>
+                    {cart.map(product => (
+                        <CartItem
+                            key={product.id}
+                            {...product}
+                            addToCart={() => addToCart(product)}
+                            // removeFromCart={() => removeFromCart(product)}
+                        />
+                    ))}
+
                 </ul>
+                <button
+                    onClick={() => clearCart()}
+                ><ClearCartIcon /></button>
             </aside>
         </>
     )
