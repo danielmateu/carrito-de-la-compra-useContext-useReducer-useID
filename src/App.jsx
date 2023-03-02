@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Header } from "./components/Header";
 
 import { Products } from "./components/Products"
-import { products as initialProducts} from './mocks/products.json';
+import { products as initialProducts } from './mocks/products.json';
 
 
 function App() {
@@ -20,23 +20,24 @@ function App() {
   const filterProducts = (products) => {
     return products.filter((product) => {
       return (
-        product.price >= filters.minPrice && 
-          (
-            filters.category === 'all' ||
-            product.category === filters.category
-          )
+        product.price >= filters.minPrice &&
+        (
+          filters.category === 'all' ||
+          product.category === filters.category
+        )
       )
     })
   }
 
   const filteredProducts = filterProducts(products)
-  
+
   return (
     <>
-      
-      <Header/>
-      <Products products={filteredProducts}
-        
+      <Header
+        setFilters={setFilters}
+      />
+      <Products
+        products={filteredProducts}
       />
     </>
   )

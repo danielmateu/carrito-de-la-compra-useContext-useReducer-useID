@@ -10,3 +10,9 @@
     display: flex;
     gap: 1rem;
 }
+
+.price {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
