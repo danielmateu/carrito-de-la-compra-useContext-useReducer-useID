@@ -35,6 +35,7 @@ function App() {
 
   return (
     <>
+      
       <Header />
       <Products products={filteredProducts} />
       {IS_DEVELOPMENT  && <Footer />}
