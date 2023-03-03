@@ -7,7 +7,6 @@ import { useCart } from "../hooks/useCart"
 export const Cart = () => {
 
     
-
     const { cart, addToCart, clearCart } = useCart()
     const cartCheckBoxId = useId()
 
